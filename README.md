@@ -31,3 +31,24 @@ export FLASK_DEBUG=1
 echo $FLASK_DEBUG
 if __name__ == '__main__':
     app.run(debug=True)
+
+
+    El codigo es vulnerable a XSS. Una ves que la cookie user_ip es guardada en el browser, el usuario es capaz de modificarla y ejecutar lo que guste.
+
+Para evitar esto, recomendaria importar escape de flask, y hacer lo siguiente:
+
+@app.route("/hello")
+def ip():
+	user_ip = request.cookies.get('user_ip')
+	user_ip = escape(user_ip)
+	return "Tu ip es {}".format(user_ip)
+
+Si no saben que es XSS, les dejo algunos recursos:
+
+En español: https://www.youtube.com/watch?v=inCS6PQYu34
+
+En ingles: https://www.youtube.com/watch?v=EoaDgUgS6QA
+
+Puedes optimizar el código escapando el dato de entrada en la misma línea de código de la variable user_ip:
+
+user_ip = escape(request.remote_addr)

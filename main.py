@@ -1,8 +1,11 @@
-from flask import Flask
+from flask import Flask, request
+
 
 app = Flask(__name__)
 
 
 @app.route('/')
 def hello():
-    return 'Hello World Colombia'
+    user_ip=request.remote_addr# provides the user ip
+    
+    return 'Hello World Colombia your ip is {}'.format(user_ip)

@@ -29,3 +29,5 @@
 #conda env export --from-history --file environment.yml.
 export FLASK_DEBUG=1
 echo $FLASK_DEBUG
+if __name__ == '__main__':
+    app.run(debug=True)

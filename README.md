@@ -52,3 +52,19 @@ En ingles: https://www.youtube.com/watch?v=EoaDgUgS6QA
 Puedes optimizar el código escapando el dato de entrada en la misma línea de código de la variable user_ip:
 
 user_ip = escape(request.remote_addr)
+
+{% for key, segment in segment_details.items() %}
+        <tr>
+                <td>{{ key }}td>
+                <td>{{ segment }}td>
+        tr>
+{% endfor %}  
+
+
+os asteriscos se deben a que locals() nos regresa un dict con las variables del contexto, pero render_template solo resive un argumento, asi que pasamos el diccionario con key y values en forma de argumentos opcionales. 
+
+Esto es util cuando empezamos a tener muchos datos en el entorno.
+
+return render_template('hello.htmrno. l', **locals())```
+
+Dato bastante útil, En caso que las variables estén definidas como globales (fuera de las funciones) se puede usar el equivalente **globals()

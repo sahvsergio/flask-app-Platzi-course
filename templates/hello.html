@@ -13,10 +13,14 @@
         <link rel="stylesheet" href="">
     </head>
     <body>
-        <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-        <h1>Hello World Platzi {{user_ip}}    </h1>
+        {% if user_ip %}
+            <h1>Hello World Platzi  your ip is {{user_ip}}    </h1>
+        {% else %}
+            <a href="{{url_for('index')}}">Ir a inicio</a>
+        {% endif %}
+        {% for todo in todos %}
+            <li>todo</li>
+        {% endfor %}
         
         <script src="" async defer></script>
     </body>

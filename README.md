@@ -141,3 +141,10 @@ Un ejemplo de uso de macros en Flask:
 html>
 
 Como podemos observar en la primera línea estamos llamando a macros.html que contiene todos nuestros macros, pero queremos uno en específico así que escribimos import nav_link para traer el macro deseado y lo renderizamos de esta manera en nuestro menú {{ nav_link('home', 'Home') }}.
+
+
+Después de media hora sin poder poner la imagen y con el error de image not found, encontré que es bastante útil darle los path a Flask desde el principio
+
+app = Flask(__name__, template_folder='../templates', static_folder='../static')
+
+el .. simplemente es para decirle que empieza en la carpeta donde esta, hacia atras

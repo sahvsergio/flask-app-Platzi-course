@@ -11,6 +11,42 @@
 
 #para los que trabajan con anaconda:
 
+Macro: son un conjunto de comandos que se invocan con una palabra clave, opcionalmente seguidas de parámetros que se utilizan como código literal. Los Macros son manejados por el compilador y no por el ejecutable compilado.
+
+Los macros facilitan la actualización y mantenimiento de las aplicaciones debido a que su re-utilización minimiza la cantidad de código escrito necesario para escribir un programa.
+
+En este ejemplo nuestra macro se vería de la siguiente manera:
+
+{% macro nav_link(endpoint, text) %}
+{% if request.endpoint.endswith(endpoint) %}
+<li class="active"><a href="{{ url_for(endpoint) }}">{{text}}a>li>
+{% else %}
+<li><a href="{{ url_for(endpoint) }}">{{text}}a>li>
+{% endif %}
+{% endmacro %}
+
+Un ejemplo de uso de macros en Flask:
+
+{% from "macros.html" import nav_link with context %}
+
+<html lang="en">
+    <head>
+    {% block head %}
+        <title>My applicationtitle>
+    {% endblock %}
+    head>
+    <body>
+        <ul class="nav-list">
+            {{ nav_link('home', 'Home') }}
+            {{ nav_link('about', 'About') }}
+            {{ nav_link('contact', 'Get in touch') }}
+        ul>
+    {% block body %}
+    {% endblock %}
+    body>
+html>
+
+Como podemos observar en la primera línea estamos llamando a macros.html que contiene todos nuestros macros, pero queremos uno en específico así que escribimos import nav_link para traer el macro deseado y lo renderizamos de esta manera en nuestro menú {{ nav_link('home', 'Home') }}.
 #--> Para crearlo
 
 #conda create -n NombreEntorno python=3.9
@@ -29,9 +65,8 @@
 #conda env export --from-history --file environment.yml.
 export FLASK_DEBUG=1
 echo $FLASK_DEBUG
-if __name__ == '__main__':
-    app.run(debug=True)
-
+if **name** == '**main**':
+app.run(debug=True)
 
     El codigo es vulnerable a XSS. Una ves que la cookie user_ip es guardada en el browser, el usuario es capaz de modificarla y ejecutar lo que guste.
 
@@ -39,9 +74,9 @@ Para evitar esto, recomendaria importar escape de flask, y hacer lo siguiente:
 
 @app.route("/hello")
 def ip():
-	user_ip = request.cookies.get('user_ip')
-	user_ip = escape(user_ip)
-	return "Tu ip es {}".format(user_ip)
+user_ip = request.cookies.get('user_ip')
+user_ip = escape(user_ip)
+return "Tu ip es {}".format(user_ip)
 
 Si no saben que es XSS, les dejo algunos recursos:
 
@@ -54,17 +89,55 @@ Puedes optimizar el código escapando el dato de entrada en la misma línea de c
 user_ip = escape(request.remote_addr)
 
 {% for key, segment in segment_details.items() %}
+
         <tr>
                 <td>{{ key }}td>
                 <td>{{ segment }}td>
         tr>
-{% endfor %}  
 
+{% endfor %}
 
-os asteriscos se deben a que locals() nos regresa un dict con las variables del contexto, pero render_template solo resive un argumento, asi que pasamos el diccionario con key y values en forma de argumentos opcionales. 
+os asteriscos se deben a que locals() nos regresa un dict con las variables del contexto, pero render_template solo resive un argumento, asi que pasamos el diccionario con key y values en forma de argumentos opcionales.
 
 Esto es util cuando empezamos a tener muchos datos en el entorno.
 
-return render_template('hello.htmrno. l', **locals())```
+return render_template('hello.htmrno. l', \*\*locals())```
 
-Dato bastante útil, En caso que las variables estén definidas como globales (fuera de las funciones) se puede usar el equivalente **globals()
+Dato bastante útil, En caso que las variables estén definidas como globales (fuera de las funciones) se puede usar el equivalente \*\*globals()
+
+Macro: son un conjunto de comandos que se invocan con una palabra clave, opcionalmente seguidas de parámetros que se utilizan como código literal. Los Macros son manejados por el compilador y no por el ejecutable compilado.
+
+Los macros facilitan la actualización y mantenimiento de las aplicaciones debido a que su re-utilización minimiza la cantidad de código escrito necesario para escribir un programa.
+
+En este ejemplo nuestra macro se vería de la siguiente manera:
+
+{% macro nav_link(endpoint, text) %}
+{% if request.endpoint.endswith(endpoint) %}
+<li class="active"><a href="{{ url_for(endpoint) }}">{{text}}a>li>
+{% else %}
+<li><a href="{{ url_for(endpoint) }}">{{text}}a>li>
+{% endif %}
+{% endmacro %}
+
+Un ejemplo de uso de macros en Flask:
+
+{% from "macros.html" import nav_link with context %}
+
+<html lang="en">
+    <head>
+    {% block head %}
+        <title>My applicationtitle>
+    {% endblock %}
+    head>
+    <body>
+        <ul class="nav-list">
+            {{ nav_link('home', 'Home') }}
+            {{ nav_link('about', 'About') }}
+            {{ nav_link('contact', 'Get in touch') }}
+        ul>
+    {% block body %}
+    {% endblock %}
+    body>
+html>
+
+Como podemos observar en la primera línea estamos llamando a macros.html que contiene todos nuestros macros, pero queremos uno en específico así que escribimos import nav_link para traer el macro deseado y lo renderizamos de esta manera en nuestro menú {{ nav_link('home', 'Home') }}.

@@ -1,27 +1,20 @@
-<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
-    </head>
-    <body>
-        {% if user_ip %}
-            <h1>Hello World Platzi  your ip is {{user_ip}}    </h1>
-        {% else %}
-            <a href="{{url_for('index')}}">Ir a inicio</a>
-        {% endif %}
-        {% for todo in todos %}
-            <li>todo</li>
-        {% endfor %}
-        
-        <script src="" async defer></script>
-    </body>
-</html>
+{% extends 'base.html' %}
+{% import 'macros.html' as macros %}
+{% block title %}
+    {{super()}}
+    Bienvenido
+{% endblock %}
+
+{% block content %}
+{% if user_ip %}
+    <h1>Hello World Platzi, tu ip es {{user_ip}}</h1>
+{% else %}
+    <a href='{{url_for('index')}}'>ir a inicio</a>
+{% endif %}
+
+<ul>
+    {% for  todo in todos%}
+        {{ macros.render_todo(todo) }}
+    {% endfor %}
+</ul>
+{% endblock %}

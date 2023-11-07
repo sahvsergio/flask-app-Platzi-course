@@ -1,9 +1,12 @@
-from flask import Flask, request, make_response,redirect,render_template
+from flask import Flask, request, make_response,redirect,render_template, session
 from flask_bootstrap import Bootstrap
 
 
 app = Flask(__name__)
 bootstrap=Bootstrap(app)
+app.config['SECRET_KEY']='Super Secreto'
+
+
 
 todos=['TODO 1','TODO 2', 'TODO 3']
 
@@ -11,7 +14,7 @@ todos=['TODO 1','TODO 2', 'TODO 3']
 def index():
     user_ip=request.remote_addr# provides the user ip
     response = make_response(redirect('/hello'))
-    response.set_cookie('user_ip',user_ip)
+    session['user_ip']=user_ip
     return response
 
 @app.route('/hello')

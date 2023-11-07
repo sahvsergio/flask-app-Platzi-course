@@ -148,3 +148,75 @@ Después de media hora sin poder poner la imagen y con el error de image not fou
 app = Flask(__name__, template_folder='../templates', static_folder='../static')
 
 el .. simplemente es para decirle que empieza en la carpeta donde esta, hacia atras
+
+Bueno atualmente ya es soprtado Bootstrap4 solo que lo tienes que especificar a la hora de hacer pip install
+
+pip install Flask-Bootstrap4
+
+Para activar el development mode debes escribir lo siguiente en la consola:
+
+export FLASK_ENV=development
+echo $FLASK_ENV
+
+SESSION: es un intercambio de información interactiva semipermanente, también conocido como diálogo, una conversación o un encuentro, entre dos o más dispositivos de comunicación, o entre un ordenador y usuario
+
+en python existen varias formas de generar strings seguros.
+
+Esta es una de ellas:
+
+import os, binascii
+binascii.b2a_hex(os.urandom(20))
+
+Que como resultado daria algo así:
+
+'b6026f861fd41a94c3389d54293de9d04bde6f7c'
+
+Otra forma es usando el modulo secrets que segun su propia documentación indica que se utiliza para generar números aleatorios criptográficamente fuertes, adecuados para administrar datos como contraseñas, autenticación de usuarios, tokens de seguridad y secretos relacionados, el codigo seria este:
+
+import secrets
+secrets.token_hex(20)
+
+Que como resultado daría algo así:
+
+'ccaf5c9a22e854856d0c5b1b96c81e851bafb288'
+
+Por ultimo se puede usar tambíen la función token_urlsafe con este codigo:
+
+secrets.token_urlsafe(20)
+
+Obteniendo como resultado algo así:
+
+'dxM4-BL1CPeHYIMmXNQevdlsvhI'
+
+app.config['']
+puede tener los siguientes keys:
+
+DEBUG
+TESTING
+PROPAGATE_EXCEPTIONS
+SECRET_KEY
+PERMANENT_SESSION_LIFETIME
+USE_X_SENDFILE
+SERVER_NAME
+APPLICATION_ROOT
+SESSION_COOKIE_NAME
+SESSION_COOKIE_DOMAIN
+SESSION_COOKIE_PATH
+SESSION_COOKIE_HTTPONLY
+SESSION_COOKIE_SECURE
+SESSION_COOKIE_SAMESITE
+SESSION_REFRESH_EACH_REQUEST
+MAX_CONTENT_LENGTH
+SEND_FILE_MAX_AGE_DEFAULT
+TRAP_BAD_REQUEST_ERRORS
+TRAP_HTTP_EXCEPTIONS
+EXPLAIN_TEMPLATE_LOADING
+PREFERRED_URL_SCHEME
+TEMPLATES_AUTO_RELOAD
+MAX_COOKIE_SIZE
+BOOTSTRAP_USE_MINIFIED
+BOOTSTRAP_CDN_FORCE_SSL
+BOOTSTRAP_QUERYSTRING_REVVING
+BOOTSTRAP_SERVE_LOCAL
+BOOTSTRAP_LOCAL_SUBDOMAIN
+

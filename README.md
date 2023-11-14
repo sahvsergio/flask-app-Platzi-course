@@ -19,6 +19,7 @@ En este ejemplo nuestra macro se vería de la siguiente manera:
 
 {% macro nav_link(endpoint, text) %}
 {% if request.endpoint.endswith(endpoint) %}
+
 <li class="active"><a href="{{ url_for(endpoint) }}">{{text}}a>li>
 {% else %}
 <li><a href="{{ url_for(endpoint) }}">{{text}}a>li>
@@ -113,6 +114,7 @@ En este ejemplo nuestra macro se vería de la siguiente manera:
 
 {% macro nav_link(endpoint, text) %}
 {% if request.endpoint.endswith(endpoint) %}
+
 <li class="active"><a href="{{ url_for(endpoint) }}">{{text}}a>li>
 {% else %}
 <li><a href="{{ url_for(endpoint) }}">{{text}}a>li>
@@ -142,10 +144,9 @@ html>
 
 Como podemos observar en la primera línea estamos llamando a macros.html que contiene todos nuestros macros, pero queremos uno en específico así que escribimos import nav_link para traer el macro deseado y lo renderizamos de esta manera en nuestro menú {{ nav_link('home', 'Home') }}.
 
-
 Después de media hora sin poder poner la imagen y con el error de image not found, encontré que es bastante útil darle los path a Flask desde el principio
 
-app = Flask(__name__, template_folder='../templates', static_folder='../static')
+app = Flask(**name**, template_folder='../templates', static_folder='../static')
 
 el .. simplemente es para decirle que empieza en la carpeta donde esta, hacia atras
 
@@ -220,3 +221,41 @@ BOOTSTRAP_QUERYSTRING_REVVING
 BOOTSTRAP_SERVE_LOCAL
 BOOTSTRAP_LOCAL_SUBDOMAIN
 
+Para los rebeldes (como yo) que no usamos boostrap, Y por ende, hicimos la plantilla así:
+
+<div class="container-form">
+        <form action="{{url_for('hello')}}" method="POST">
+            {{login_form.username.label}}
+            {{login_form.username}}
+            {{login_form.password.label}}
+            {{login_form.password}}
+            {{login_form.submit}}
+        </form>
+    </div>
+
+Esta es la configuración para que el resultado sea igual al de Bernardo.
+
+app.config['WTF_CSRF_ENABLED']= False
+
+Lo que pasa es que los formularios hay que cifrarlos para poder mandar la información más segura y ese proceso lo hace boostrap por defecto. Mientras que el método manual, toca tambien cifrarlo pero de forma manual.
+
+e pasaba lo mismo. La respuesta es que se necesita enviar el token del formulario (CSRF). Faltaría añadir: {{ login_form.csrf_token }} Entonces ya puedes validar con la función "validate_on_submit". Espero que te sirva. Saludos.
+
+  <form action="{{ url_for('hello') }}" method="POST">
+                {{ login_form.csrf_token }}
+                {{ login_form.username.label }}
+                {{ login_form.username }}
+                {{ login_form.password.label }}                
+                {{ login_form.password }}                
+                {{ login_form.submit }}                              
+            </form>
+
+Flask acepta peticiones GET por defecto y por ende no debemos declararla en nuestras rutas.
+
+Pero cuando necesitamos hacer una petición POST al enviar un formulario debemos declararla de la siguiente manera, como en este ejemplo:
+
+@app.route('/platzi-post', methods=['GET', 'POST'])
+
+Debemos declararle además de la petición que queremos, GET, ya que le estamos pasando el parámetro methods para que acepte solo y únicamente las peticiones que estamos declarando.
+
+De esta forma, al actualizar el navegador ya podremos hacer la petición POST a nuestra ruta deseada y obtener la respuesta requerida.

@@ -259,3 +259,19 @@ Pero cuando necesitamos hacer una petición POST al enviar un formulario debemos
 Debemos declararle además de la petición que queremos, GET, ya que le estamos pasando el parámetro methods para que acepte solo y únicamente las peticiones que estamos declarando.
 
 De esta forma, al actualizar el navegador ya podremos hacer la petición POST a nuestra ruta deseada y obtener la respuesta requerida.
+
+La etapa de pruebas se denomina testing y se trata de una investigación exhaustiva, no solo técnica sino también empírica, que busca reunir información objetiva sobre la calidad de un proyecto de software, por ejemplo, una aplicación móvil o un sitio web.
+
+El objetivo del testing no solo es encontrar fallas sino también aumentar la confianza en la calidad del producto, facilitar información para la toma de decisiones y detectar oportunidades de mejora.
+
+La función self.assertRedirects extrae el atributo location del primer parámetro (“response”) , y del segundo revisa el netloc, que seria para ambos parámetros
+localhost
+Para esto usa la función urlparse, pero no toma el netloc, solo el path ‘/’ en index y ‘/hello’ .
+Como no encuentra el netloc en el segundo parametro, le añadi ‘localhost’, por lo que la comparación queda mal.
+Posiblemente esto no ocurría en las versiones anteriores de Flask-Testing.
+Así que modifique la función del modulo. Ya que en Visual Code se puede acceder a la función directamente ubicando el puntero en esta y presionando CTRL.
+Aquí esta el código corregido. Sé que el código puede ser más prolijo pero priorice claridad de uso sobre limpieza.
+Aquí esta el repositorio original:
+jarus/ flask-testing
+
+<h4>En el tercer test subraya **assertRedirects** con click derecho despliega las opciones, escoge la primera "Go to definition" y en la línea 304 en utils.py cambia el  — if parts.netloc — por — if parts.path --</h4>

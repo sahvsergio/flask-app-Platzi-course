@@ -275,3 +275,11 @@ Aquí esta el repositorio original:
 jarus/ flask-testing
 
 <h4>En el tercer test subraya **assertRedirects** con click derecho despliega las opciones, escoge la primera "Go to definition" y en la línea 304 en utils.py cambia el  — if parts.netloc — por — if parts.path --</h4>
+
+
+    https://pythonise.com/series/learning-flask/flask-application-structure
+    https://dev.to/aligoren/how-i-structure-my-flask-apps-3eh8
+    https://flask.palletsprojects.com/en/1.1.x/tutorial/layout/
+    https://flask.palletsprojects.com/en/1.1.x/tutorial/factory/
+    https://bitybyte.github.io/Organzando-codigo-Python/
+

@@ -11,4 +11,9 @@ def login():
 
 
     }
-    return render_template('login.html',**context)
+    # if login_form.validate_on_submit():
+    #    username = login_form.username.data
+    #    session['username'] = username
+    #    flash('Nombre de usuario registrado con éxito')
+
+    return render_template('login.html', **context)

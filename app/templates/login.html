@@ -1,0 +1,4 @@
+{% extends 'base.html' %} {% block title %} {% import'bootstrap/wtf.html' as wtf
+%} {{super()}} 404 {% endblock %} {% block content %}
+<div class="container">{{wtf.quick_form(login_form)}}</div>
+{% endblock %}
